@@ -99,7 +99,7 @@ class CCS811:
         """Return the Firmware Boot Version or the Firmware Application Version."""
         fwv = self.i2c.readfrom_mem(self.addr, addr_register, 2)
         # Format fo result:  major.minor.trivial
-        return "{}.{}.{}".format(fwv >> 12, fwv >> 8 & 0xF, fwv & 0xFF)
+        return "{}.{}.{}".format(fwv[0] >> 4, fwv[0] & 0xF, fwv[1])
 
     def _error_id(self):
         """Raise an exception if an error is identified."""
